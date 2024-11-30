@@ -15,6 +15,6 @@ while inotifywait -r -e modify,create,delete "$REPO_PATH"; do
     git commit -m "Auto commit on $(date)"
 
     # Push changes to GitHub using SSH
-    git push origin main  # Replace 'main' with your branch name
+    git push origin master  # Replace 'main' with your branch name
 done
 
