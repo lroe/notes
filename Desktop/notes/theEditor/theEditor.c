@@ -62,7 +62,7 @@ int main() {
   enableRawMode();
   char c;
   while (1){
-    editorRefreshScreen()
+    editorRefreshScreen();
   	editorProcessKeyPress();
   }
   return 0;
