@@ -10,7 +10,10 @@
 #define CTRL_KEY(k)((k) & 0x1f)
 
 //data
-struct termios orig_termios;
+struct editorConfig{
+  struct termios orig_termios;
+};
+struct editorConfig E;
 
 //terminal
 void die(const char *s) {
