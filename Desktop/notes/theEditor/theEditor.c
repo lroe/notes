@@ -26,7 +26,7 @@ int main() {
   		printf("%d\n",c);
   	}
   	else{
-  		printf("%d ('%c')\r\n",c,c);
+  		printf("%d ('%c')",c,c);
   	}
   }
   return 0;
