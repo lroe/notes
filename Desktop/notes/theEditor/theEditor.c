@@ -62,7 +62,7 @@ void abFree(struct abuf *ab){
   free(ab->b);
 }
 
-void editorDrawRows(){
+void editorDrawRows(struct abuf *ab){
   int y;
   for(y=0;y<E.screenrows;y++){
     abAppend(ab, "~", 1);
