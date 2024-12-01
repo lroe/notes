@@ -44,15 +44,31 @@ void enableRawMode() {
   if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw) == -1) die("tcsetattr");
 }
 //output
+struct abuf {
+  char *b;
+  int len;
+};
+#define ABUF_INIT {NULL, 0}
 
+void abAppend(struct abuf *ab, const char *s, int len){
+  char *new = realloc(ab->b,ab->len + len);
+  if (new == NULL) return;
+  memcpy(&new[ab->len],s,len);
+  ab->b = new;
+  ab->len+=len;
+}
+
+void abFree(struct abuf *ab){
+  free(ab->b);
+}
 
 void editorDrawRows(){
   int y;
   for(y=0;y<E.screenrows;y++){
-    write(STDOUT_FILENO,"~\r\n",3);
+    abAppend(ab, "~", 1);
 
     if (y < E.screenrows - 1) {
-      write(STDOUT_FILENO, "\r\n", 2);
+      abAppend(ab, "\r\n", 1);
     }
 
   }
@@ -102,23 +118,7 @@ int getWindowSize(int *rows, int *cols) {
     return 0;
   }
 }
-struct abuf {
-  char *b;
-  int len;
-};
-#define ABUF_INIT {NULL, 0}
 
-void abAppend(struct abuf *ab, const char *s, int len){
-  char *new = realloc(ab->b,ab->len + len);
-  if (new == NULL) return;
-  memcpy(&new[ab->len],s,len);
-  ab->b = new;
-  ab->len+=len;
-}
-
-void abFree(struct abuf *ab){
-  free(ab->b);
-}
 void editorProcessKeyPress(){
   char c = editorReadKey();
   switch(c){
