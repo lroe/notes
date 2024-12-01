@@ -101,6 +101,11 @@ int getWindowSize(int *rows, int *cols) {
     return 0;
   }
 }
+struct abuf {
+  char *b;
+  int len;
+};
+#define ABUF_INIT {NULL, 0}
 
 
 void editorProcessKeyPress(){
