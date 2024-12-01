@@ -7,7 +7,7 @@
 #include<stdio.h>
 #include<ctype.h>
 
-#define CTL_KEY(k)((k) & 0x1f)
+#define CTRL_KEY(k)((k) & 0x1f)
 
 //data
 struct termios orig_termios;
