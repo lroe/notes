@@ -28,7 +28,7 @@ int main() {
   	char c ='\0';
   	read(STDIN_FILENO,&c,1);
   	if(iscntrl(c)){
-  		printf("%d\n",c);
+  		printf("%d\r\n",c);
   	}
   	else{
   		printf("%d ('%c')\r\n",c,c);
